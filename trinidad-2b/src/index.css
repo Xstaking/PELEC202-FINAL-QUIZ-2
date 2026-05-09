@@ -1,399 +1,797 @@
 /* ===== CSS VARIABLES & RESET ===== */
+
 :root {
+
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
   --card-bg: #ffffff;
+
   --text-primary: #2d3748;
+
   --text-secondary: #4a5568;
+
   --text-muted: #718096;
+
   --error-color: #e53e3e;
+
   --error-bg: #fff5f5;
+
   --loading-color: #667eea;
+
   --border-color: #e2e8f0;
+
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.2);
+
   --border-radius: 16px;
+
   --transition: all 0.3s ease;
+
 }
+
+
 
 * {
+
   box-sizing: border-box;
+
   margin: 0;
+
   padding: 0;
+
 }
+
+
 
 body {
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
   background: var(--primary-gradient);
+
   min-height: 100vh;
+
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   padding: 20px;
+
   color: var(--text-primary);
+
   line-height: 1.6;
+
 }
+
+
 
 /* ===== MAIN APP CONTAINER ===== */
+
 .App {
+
   background: var(--card-bg);
+
   border-radius: var(--border-radius);
+
   box-shadow: var(--shadow-lg);
+
   padding: 32px 28px;
+
   max-width: 520px;
+
   width: 100%;
+
   text-align: center;
+
   animation: slideUp 0.5s ease-out;
+
 }
+
+
 
 @keyframes slideUp {
+
   from {
+
     opacity: 0;
+
     transform: translateY(30px);
+
   }
+
   to {
+
     opacity: 1;
+
     transform: translateY(0);
+
   }
+
 }
+
+
 
 /* ===== HEADER ===== */
+
 .app-header {
+
   margin-bottom: 28px;
+
   padding-bottom: 20px;
+
   border-bottom: 1px solid var(--border-color);
+
 }
+
+
 
 .app-header h1 {
+
   font-size: 2rem;
+
   font-weight: 700;
+
   color: var(--text-primary);
+
   margin-bottom: 8px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 12px;
+
 }
+
+
 
 .subtitle {
+
   color: var(--text-muted);
+
   font-size: 1rem;
+
   font-weight: 400;
+
 }
+
+
 
 /* ===== SEARCH FORM ===== */
+
 .search-form {
+
   margin-bottom: 24px;
+
 }
+
+
 
 .input-group {
+
   display: flex;
+
   flex-direction: column;
+
   gap: 12px;
+
 }
+
+
 
 .city-input {
+
   padding: 14px 18px;
+
   font-size: 1rem;
+
   border: 2px solid var(--border-color);
+
   border-radius: 12px;
+
   outline: none;
+
   transition: var(--transition);
+
   width: 100%;
+
   background: #f8fafc;
+
 }
+
+
 
 .city-input:focus {
+
   border-color: #667eea;
+
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+
   background: #ffffff;
+
 }
+
+
 
 .city-input::placeholder {
+
   color: var(--text-muted);
+
 }
+
+
 
 .city-input:disabled {
+
   background: #edf2f7;
+
   cursor: not-allowed;
+
 }
+
+
 
 .search-btn {
+
   padding: 14px 24px;
+
   font-size: 1rem;
+
   font-weight: 600;
+
   color: white;
+
   background: var(--primary-gradient);
+
   border: none;
+
   border-radius: 12px;
+
   cursor: pointer;
+
   transition: var(--transition);
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 8px;
+
 }
+
+
 
 .search-btn:hover:not(:disabled) {
+
   transform: translateY(-2px);
+
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+
 }
+
+
 
 .search-btn:active:not(:disabled) {
+
   transform: translateY(0);
+
 }
+
+
 
 .search-btn:disabled {
+
   background: #cbd5e0;
+
   cursor: not-allowed;
+
   transform: none;
+
   box-shadow: none;
+
 }
+
+
 
 /* ===== SPINNER ANIMATION ===== */
+
 .spinner {
+
   width: 20px;
+
   height: 20px;
+
   border: 3px solid rgba(255, 255, 255, 0.3);
+
   border-radius: 50%;
+
   border-top-color: white;
+
   animation: spin 1s linear infinite;
+
   display: inline-block;
+
 }
+
+
 
 @keyframes spin {
+
   to { transform: rotate(360deg); }
+
 }
+
+
 
 /* ===== STATUS MESSAGES ===== */
+
 .status-message {
+
   padding: 14px 20px;
+
   border-radius: 10px;
+
   margin: 16px 0;
+
   font-weight: 500;
+
   animation: fadeIn 0.3s ease-out;
+
 }
+
+
 
 @keyframes fadeIn {
+
   from { opacity: 0; transform: translateY(-10px); }
+
   to { opacity: 1; transform: translateY(0); }
+
 }
+
+
 
 .status-message.loading {
+
   color: var(--loading-color);
+
   background: #f0f4ff;
+
   border: 1px solid rgba(102, 126, 234, 0.3);
+
 }
+
+
 
 .loading-dots::after {
+
   content: '';
+
   animation: dots 1.5s steps(4, end) infinite;
+
 }
+
+
 
 @keyframes dots {
+
   0%, 20% { content: ''; }
+
   40% { content: '.'; }
+
   60% { content: '..'; }
+
   80%, 100% { content: '...'; }
+
 }
+
+
 
 .status-message.error {
+
   color: var(--error-color);
+
   background: var(--error-bg);
+
   border-left: 4px solid var(--error-color);
+
   text-align: left;
+
 }
+
+
 
 /* ===== WEATHER CARD ===== */
+
 .weather-card {
+
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+
   padding: 28px 24px;
+
   border-radius: 14px;
+
   margin-top: 8px;
+
   animation: cardPop 0.4s ease-out;
+
   border: 1px solid var(--border-color);
+
 }
+
+
 
 @keyframes cardPop {
+
   0% { opacity: 0; transform: scale(0.95); }
+
   100% { opacity: 1; transform: scale(1); }
+
 }
+
+
 
 .weather-icon {
+
   margin-bottom: 12px;
+
   display: flex;
+
   justify-content: center;
+
 }
+
+
 
 .weather-icon img {
+
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
 }
+
+
 
 .city-name {
+
   font-size: 1.9rem;
+
   font-weight: 700;
+
   color: var(--text-primary);
+
   margin: 8px 0 16px;
+
   text-transform: capitalize;
+
 }
+
+
 
 .temperature {
+
   display: flex;
+
   align-items: baseline;
+
   justify-content: center;
+
   gap: 4px;
+
   margin: 12px 0;
+
 }
+
+
 
 .temp-value {
+
   font-size: 4rem;
+
   font-weight: 800;
+
   color: #667eea;
+
   line-height: 1;
+
 }
+
+
 
 .temp-unit {
+
   font-size: 1.5rem;
+
   font-weight: 600;
+
   color: var(--text-secondary);
+
 }
+
+
 
 .condition {
+
   margin: 16px 0 8px;
+
   font-size: 1.15rem;
+
   color: var(--text-secondary);
+
 }
+
+
 
 .condition-label {
+
   font-weight: 600;
+
   color: var(--text-primary);
+
 }
+
+
 
 .condition-value {
+
   text-transform: capitalize;
+
   margin-left: 6px;
+
 }
+
+
 
 .weather-footer {
+
   margin-top: 20px;
+
   padding-top: 16px;
+
   border-top: 1px dashed var(--border-color);
+
 }
+
+
 
 .weather-footer small {
+
   color: var(--text-muted);
+
   font-size: 0.85rem;
+
 }
+
+
 
 /* ===== HINT SECTION ===== */
+
 .hint {
+
   margin-top: 20px;
+
   padding: 16px;
+
   background: #f8fafc;
+
   border-radius: 10px;
+
   border: 1px dashed var(--border-color);
+
 }
+
+
 
 .hint p {
+
   color: var(--text-muted);
+
   font-size: 0.95rem;
+
 }
+
+
 
 .hint strong {
+
   color: var(--text-primary);
+
   font-weight: 600;
+
 }
+
+
 
 /* ===== RESPONSIVE DESIGN ===== */
+
 @media (min-width: 480px) {
+
   .input-group {
+
     flex-direction: row;
+
   }
+
   
+
   .city-input {
+
     flex: 1;
+
   }
+
   
+
   .search-btn {
+
     padding: 14px 28px;
+
   }
+
 }
+
+
 
 @media (max-width: 479px) {
+
   .App {
+
     padding: 24px 20px;
+
     margin: 8px;
+
   }
+
   
+
   .app-header h1 {
+
     font-size: 1.6rem;
+
   }
+
   
+
   .subtitle {
+
     font-size: 0.95rem;
+
   }
+
   
+
   .city-input,
+
   .search-btn {
+
     padding: 12px 16px;
+
     font-size: 0.95rem;
+
   }
+
   
+
   .temp-value {
+
     font-size: 3.2rem;
+
   }
+
   
+
   .temp-unit {
+
     font-size: 1.2rem;
+
   }
+
   
+
   .city-name {
+
     font-size: 1.5rem;
+
   }
+
 }
+
+
 
 /* ===== ACCESSIBILITY ===== */
+
 @media (prefers-reduced-motion: reduce) {
+
   *,
+
   *::before,
+
   *::after {
+
     animation-duration: 0.01ms !important;
+
     animation-iteration-count: 1 !important;
+
     transition-duration: 0.01ms !important;
+
   }
+
 }
+
+
 
 .city-input:focus-visible,
+
 .search-btn:focus-visible {
+
   outline: 3px solid #667eea;
+
   outline-offset: 2px;
+
 }
+
+
 
 /* High contrast mode support */
+
 @media (prefers-contrast: high) {
+
   .city-input {
+
     border-width: 3px;
+
   }
+
   
+
   .weather-card {
+
     border-width: 2px;
+
   }
+
 }
 
+
+
 /* ===== PRINT STYLES ===== */
+
 @media print {
+
   body {
+
     background: white;
+
     padding: 0;
+
   }
+
   
+
   .App {
+
     box-shadow: none;
+
     border: 1px solid #ccc;
+
   }
+
   
+
   .search-form,
+
   .hint {
+
     display: none;
+
   }
+
 }

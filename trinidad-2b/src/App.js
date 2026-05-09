@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-// ⚠️ Replace with your actual API key from https://openweathermap.org/api
-// For production: use process.env.REACT_APP_API_KEY with a .env file
+
 const API_KEY = 'f86438c53d9166f62a33c036561880f1';
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
